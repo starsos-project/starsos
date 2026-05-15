@@ -111,7 +111,7 @@ When you type `starsos` with no args, you're in the cockpit. It's a real interac
 | Key | What it does |
 |---|---|
 | ↑ ↓ (or `k` `j`) | Navigate one chat |
-| PageUp / PageDown | Navigate one page (15 chats) |
+| PageUp / PageDown | Navigate one page (30 chats) |
 | Home / End | Jump to first / last |
 | **Enter** | **Open the selected chat in a new iTerm2 tab** |
 | `r` | Resume in current terminal (exits TUI) |
@@ -160,7 +160,7 @@ starsos chat watch --notify
 
 ## Pagination
 
-By default, `starsos status` shows the **top 15 chats** across all projects (newest first), grouped by project, max 5 per project. To override:
+By default, `starsos status` shows the **top 30 chats** across all projects (newest first), grouped by project, max 5 per project. To override:
 
 ```bash
 starsos status --limit 30   # show top 30
