@@ -1,0 +1,3 @@
+{"type":"user","message":{"role":"user","content":"Infra-linux registry refresh"},"timestamp":"2026-05-12T10:00:00.000Z","cwd":"/tmp/proj-b","sessionId":"cccccccc-1111-2222-3333-666666666666"}
+{"type":"assistant","message":{"role":"assistant","content":"Refreshing registry"},"timestamp":"2026-05-12T10:00:10.000Z","cwd":"/tmp/proj-b","sessionId":"cccccccc-1111-2222-3333-666666666666"}
+{"type":"user","message":{"role":"user","content":"Add stadt-dornbirn host"},"timestamp":"2026-05-12T10:05:00.000Z","cwd":"/tmp/proj-b","sessionId":"cccccccc-1111-2222-3333-666666666666"}

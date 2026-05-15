@@ -1,0 +1,42 @@
+name: Feature request
+description: Suggest an improvement or new capability
+title: "[feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a feature! For large additions to the core, please discuss first before opening a PR.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the workflow or pain point that prompted this request.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: What command, flag, or behavior do you imagine?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you think about? Why did you discard them?
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Where does this belong?
+      options:
+        - label: Core CLI (`starsos` command)
+        - label: Adapter SDK
+        - label: A specific adapter (please mention which in the description)
+        - label: Documentation
+        - label: Not sure

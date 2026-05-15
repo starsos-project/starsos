@@ -1,0 +1,51 @@
+name: Adapter request
+description: Suggest an adapter for a tool, platform, or service
+title: "[adapter]: "
+labels: ["adapter", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Want a Stars OS adapter for some tool or service? Tell us about it. Many adapters can be community-contributed — see [authoring an adapter](https://docs.starsos.org/adapters/authoring) (link goes live with v0.1).
+
+  - type: input
+    id: target
+    attributes:
+      label: What tool or service?
+      placeholder: e.g. "DigitalOcean API", "Mailcow", "Sentry"
+    validations:
+      required: true
+
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: What capabilities should the adapter expose?
+      description: List specific commands or operations you'd want.
+      placeholder: |
+        - `list droplets`
+        - `create snapshot`
+        - `restore from snapshot`
+    validations:
+      required: true
+
+  - type: textarea
+    id: auth
+    attributes:
+      label: How does authentication work?
+      description: API keys, OAuth, SSH, basic auth, ...
+    validations:
+      required: true
+
+  - type: input
+    id: api-docs
+    attributes:
+      label: Link to API documentation (if applicable)
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Are you offering to contribute?
+      options:
+        - label: I would like to write this adapter myself
+        - label: I'm willing to help test
+        - label: I'm requesting; someone else would build it

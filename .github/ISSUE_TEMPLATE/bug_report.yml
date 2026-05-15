@@ -1,0 +1,76 @@
+name: Bug report
+description: Report something that is broken or behaves unexpectedly
+title: "[bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Stars OS is in pre-alpha, so we expect rough edges — but knowing about them is how we fix them.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+      placeholder: When I ran `starsos status`, it crashed with...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Minimal commands or steps that trigger the bug.
+      placeholder: |
+        1. `starsos init`
+        2. `starsos project add foo --path ~/foo`
+        3. `starsos status`
+        4. ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Stars OS version
+      description: Output of `starsos --version`
+      placeholder: "0.x.x"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows (WSL)
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs / output
+      description: Output from `starsos doctor` is especially helpful. Please redact any secrets.
+      render: shell
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and did not find a duplicate
+          required: true
+        - label: I am running the latest version
+          required: false

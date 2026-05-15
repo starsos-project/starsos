@@ -1,0 +1,4 @@
+{"type":"user","message":{"role":"user","content":"Help me refactor the performance baseline tests"},"timestamp":"2026-05-13T09:00:00.000Z","cwd":"/tmp/proj-a","sessionId":"aaaaaaaa-1111-2222-3333-444444444444"}
+{"type":"assistant","message":{"role":"assistant","content":"Sure, let me look at the test file"},"timestamp":"2026-05-13T09:00:05.000Z","cwd":"/tmp/proj-a","sessionId":"aaaaaaaa-1111-2222-3333-444444444444"}
+{"type":"user","message":{"role":"user","content":"Use cli-table3 for the output"},"timestamp":"2026-05-13T09:01:00.000Z","cwd":"/tmp/proj-a","sessionId":"aaaaaaaa-1111-2222-3333-444444444444"}
+{"type":"assistant","message":{"role":"assistant","content":"Done"},"timestamp":"2026-05-13T09:01:30.000Z","cwd":"/tmp/proj-a","sessionId":"aaaaaaaa-1111-2222-3333-444444444444"}

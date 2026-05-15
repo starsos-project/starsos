@@ -1,0 +1,11 @@
+#!/usr/bin/env bun
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+import { existsSync } from "node:fs";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const distEntry = join(here, "..", "dist", "index.js");
+const srcEntry = join(here, "..", "src", "index.ts");
+
+const entry = existsSync(distEntry) ? distEntry : srcEntry;
+await import(entry);

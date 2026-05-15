@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+bun.lockb
+bun.lock
+pnpm-lock.yaml
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+.turbo/
+
+# Test
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Internal-only — never push to public repo
+strategy/
+session-logs/
+CLAUDE.md
+INITIAL-COMMIT.md
+assets/brand/source/
+org-profile/
+
+# Allow brand exports
+!assets/brand/exports/

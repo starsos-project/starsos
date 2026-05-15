@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # Pre-alpha: no code yet, just sanity checks on docs and config.
+  # Sprint 1 will add lint/type-check/test jobs against packages/.
+
+  docs:
+    name: Docs sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Markdown lint
+        uses: DavidAnson/markdownlint-cli2-action@v18
+        with:
+          globs: |
+            *.md
+            .github/**/*.md
+          config: |
+            {
+              "default": true,
+              "MD013": false,
+              "MD033": false,
+              "MD041": false,
+              "MD024": { "siblings_only": true }
+            }
+        continue-on-error: true
+
+      - name: Check internal-only paths are not in repo
+        run: |
+          set -e
+          missing_ok=()
+          for path in strategy session-logs CLAUDE.md INITIAL-COMMIT.md; do
+            if [ -e "$path" ]; then
+              echo "::error::Internal-only path '$path' must not be committed."
+              missing_ok+=("$path")
+            fi
+          done
+          if [ ${#missing_ok[@]} -gt 0 ]; then
+            exit 1
+          fi
+          echo "OK — no internal paths leaked into the repo."
+
+      - name: Verify required public files exist
+        run: |
+          set -e
+          for f in README.md LICENSE CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md .gitignore; do
+            if [ ! -f "$f" ]; then
+              echo "::error::Required file '$f' is missing."
+              exit 1
+            fi
+          done
+          echo "OK — all required public files present."
