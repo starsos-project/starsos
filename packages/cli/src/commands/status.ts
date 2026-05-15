@@ -18,7 +18,7 @@ export interface StatusOptions {
 }
 
 // Defaults aimed at fitting "the recent stuff" on one screen.
-const DEFAULT_TOTAL_LIMIT = 15;
+const DEFAULT_TOTAL_LIMIT = 30;
 const DEFAULT_PER_PROJECT_LIMIT = 5;
 
 interface ChatWithAlias extends Chat {

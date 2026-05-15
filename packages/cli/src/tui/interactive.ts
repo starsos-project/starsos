@@ -17,7 +17,7 @@ import type { Chat, Project } from "../types.ts";
 import { relativeTime, truncate } from "../ui/relative.ts";
 
 // Page size — number of chats visible in the cockpit at once.
-const PAGE_SIZE = 15;
+const PAGE_SIZE = 30;
 
 interface Row {
   kind: "header" | "chat";
