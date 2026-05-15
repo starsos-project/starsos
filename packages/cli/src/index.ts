@@ -18,6 +18,7 @@ import {
 import { runChatWatch } from "./commands/chat-watch.ts";
 import { printInitResult, runInit } from "./commands/init.ts";
 import { runStatus } from "./commands/status.ts";
+import { runInteractiveTui } from "./tui/interactive.ts";
 import { runTui } from "./tui/repl.ts";
 
 // Version is injected by bundler from package.json at build time.
@@ -364,7 +365,15 @@ chat
   });
 
 // If invoked without any args, drop into the interactive TUI cockpit.
+// --legacy-repl forces the older line-based REPL.
 if (process.argv.length <= 2) {
+  runInteractiveTui().catch((err) => {
+    process.stderr.write(
+      `${pc.red("error:")} ${err instanceof Error ? err.message : String(err)}\n`,
+    );
+    process.exit(2);
+  });
+} else if (process.argv.length === 3 && process.argv[2] === "--legacy-repl") {
   runTui().catch((err) => {
     process.stderr.write(
       `${pc.red("error:")} ${err instanceof Error ? err.message : String(err)}\n`,

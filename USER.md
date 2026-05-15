@@ -104,26 +104,33 @@ starsos chat done A2 --status FERTIG --summary "Performance baseline complete"
 
 Stars OS writes a session log to `<project>/session-logs/YYYY-MM-DD-<slug>.md`, marks the chat as `done` in the cockpit, and runs your `~/.starsos/hooks/post-touchdown.sh` hook (if any) — which can update `PROJECTS.md`, `ACTIVITY-LOG.md`, your People-CRM, anything.
 
-## TUI cheatsheet
+## TUI cheatsheet (interactive cockpit)
 
-When you type `starsos` with no args, you're in the cockpit. Commands:
+When you type `starsos` with no args, you're in the cockpit. It's a real interactive TUI — use arrow keys to navigate, Enter to open a chat.
 
-| Type | What it does |
+| Key | What it does |
 |---|---|
-| `<alias> resume` (or `r`) | Resume in current terminal |
-| `<alias> nw` (or `new window`) | Open in a new iTerm2 tab (macOS) |
-| `<alias> show` | Meta view: tags, notes, preview |
-| `<alias> tag <tag>` | Add tag |
-| `<alias> untag <tag>` | Remove tag |
-| `<alias> note <text>` | Append note |
-| `<alias> link <slug>` | Manual project link |
-| `<alias> send <text>` | Queue inbox prompt |
-| `<alias> task <text>` | Dispatch background subagent (M1.5) |
-| `<alias> done <status> <summary>` | Touchdown |
-| `<alias> status [s]` | Get / set per-chat status |
-| `r` or `refresh` | Re-render cockpit |
-| `?` or `help` | Show this list |
-| `q` or `quit` | Exit cockpit |
+| ↑ ↓ (or `k` `j`) | Navigate one chat |
+| PageUp / PageDown | Navigate one page (15 chats) |
+| Home / End | Jump to first / last |
+| **Enter** | **Open the selected chat in a new iTerm2 tab** |
+| `r` | Resume in current terminal (exits TUI) |
+| `t` | Dispatch task (background subagent) — prompts inline |
+| `n` | Add note — prompts inline |
+| `s` | Send inbox prompt — prompts inline |
+| `g` | Add tags — prompts inline |
+| `d` | Touchdown (`chat done`) — prompts summary + status |
+| `f5` or `f` | Refresh chat list |
+| `?` or `h` | Show keybindings |
+| `q` or Ctrl-C | Quit |
+
+The cockpit uses the alternate screen buffer, so your normal terminal scrollback isn't polluted.
+
+If you prefer the older line-based REPL (type commands like `A2 resume`), use:
+
+```bash
+starsos --legacy-repl
+```
 
 ## Output formats
 
