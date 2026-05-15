@@ -1,6 +1,7 @@
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { createInterface, emitKeypressEvents } from "node:readline";
+import { emitKeypressEvents } from "node:readline";
+import { createInterface } from "node:readline/promises";
 import pc from "picocolors";
 import { runChatDone } from "../commands/chat-done.ts";
 import { runChatNote } from "../commands/chat-note.ts";
