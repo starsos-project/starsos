@@ -62,6 +62,12 @@ export async function runInteractiveTui(): Promise<void> {
   emitKeypressEvents(process.stdin);
   process.stdin.resume();
 
+  // Lock to suppress global keypress handler while an inline prompt is open.
+  let inPrompt = false;
+  setPromptLock(() => inPrompt, (v: boolean) => {
+    inPrompt = v;
+  });
+
   const cleanup = () => {
     process.stdin.setRawMode(false);
     process.stdin.pause();
@@ -80,6 +86,7 @@ export async function runInteractiveTui(): Promise<void> {
   return new Promise<void>((resolve) => {
     process.stdin.on("keypress", async (_str, key) => {
       if (key === undefined) return;
+      if (inPrompt) return; // ignore TUI keys while inline prompt is open
       if ((key.ctrl === true && key.name === "c") || key.name === "q") {
         cleanup();
         resolve();
@@ -421,9 +428,23 @@ function shellQuote(s: string): string {
   return `'${s.replace(/'/g, "'\\''")}'`;
 }
 
+// Prompt-lock state injected by runInteractiveTui. Keeps the global keypress
+// handler quiet while readline reads a line.
+let getLock: () => boolean = () => false;
+let setLock: (v: boolean) => void = () => {
+  /* no-op */
+};
+function setPromptLock(getter: () => boolean, setter: (v: boolean) => void): void {
+  getLock = getter;
+  setLock = setter;
+}
+// Silence the unused-symbol warning by exposing getter for future reads.
+void getLock;
+
 // Inline prompts for sub-actions
 async function promptInline(label: string, def?: string): Promise<string | null> {
-  // Temporarily restore cooked mode for readline.
+  // Pause raw-mode keypress events for the duration of the question.
+  setLock(true);
   process.stdin.setRawMode(false);
   const rl = createInterface({ input: process.stdin, output: process.stdout });
   try {
@@ -436,6 +457,7 @@ async function promptInline(label: string, def?: string): Promise<string | null>
     rl.close();
     process.stdin.setRawMode(true);
     process.stdin.resume();
+    setLock(false);
   }
 }
 
